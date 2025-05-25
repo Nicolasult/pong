@@ -26,4 +26,13 @@ class Player(pygame.sprite.Sprite):
         self.get_direction()
         self.move(dt)
 
-#class Ball
+class Ball(pygame.sprite.Sprite):
+    def __init__(self, groups, paddle_sprites):
+        super().__init__(groups)
+
+        #image
+        self.image = pygame.Surface(SIZE["ball"])
+        self.image.fill(COLORS["ball"])
+
+        # rect & movement
+        self.rect = self.image.get_frect(center = (WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2))
