@@ -1,4 +1,5 @@
 from settings import *
+from random import choice, uniform
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, groups):
@@ -36,3 +37,10 @@ class Ball(pygame.sprite.Sprite):
 
         # rect & movement
         self.rect = self.image.get_frect(center = (WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2))
+        self.direction = pygame.Vector2(choice((1, -1)), uniform(0.7, 0.8) * choice((-1, 1)))
+
+    def move(self, dt):
+        self.rect.center += self.direction * SPEED["ball"] * dt
+    
+    def update(self, dt):
+        self.move(dt)
