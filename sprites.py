@@ -2,7 +2,7 @@ import pygame.freetype
 from settings import *
 from random import choice, uniform
 
-class Player(pygame.sprite.Sprite):
+class Paddle(pygame.sprite.Sprite):
     def __init__(self, groups):
         super().__init__(groups)
 
@@ -15,6 +15,10 @@ class Player(pygame.sprite.Sprite):
         self.old_rect = self.rect.copy()
         self.direction = 0
         self.speed = SPEED["player"]
+
+class Player(Paddle):
+    def __init__(self, groups):
+        super().__init__(groups)
     
     def move(self, dt):
         self.rect.centery += self.direction * self.speed * dt
