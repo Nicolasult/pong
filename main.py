@@ -15,7 +15,14 @@ class Game:
         self.player = Player((self.all_sprites, self.paddle_sprites))
         self.ball = Ball(self.all_sprites, self.paddle_sprites)
         Opponent((self.all_sprites, self.paddle_sprites), self.ball)
-    
+
+        # Score
+        self.score = {"player" : 0, "opponent" : 0}
+
+    def display_score(self):
+        pass
+
+
     def run(self):
         while self.running == True:
             dt = self.clock.tick() / 1000
