@@ -20,7 +20,10 @@ class Game:
         self.score = {"player" : 0, "opponent" : 0}
 
     def display_score(self):
-        pass
+        
+        # Player
+        player_surf = self.font.render()
+        self.font = pygame.font.Font()
 
 
     def run(self):
