@@ -18,12 +18,17 @@ class Game:
 
         # Score
         self.score = {"player" : 0, "opponent" : 0}
+        self.font = pygame.font.Font(None, 160)
 
     def display_score(self):
         
         # Player
-        player_surf = self.font.render()
-        self.font = pygame.font.Font()
+        player_surf = self.font.render(str(self.score["player"]), True, COLORS["bg detail"])
+        player_rect = player_surf.get_frect(center = (WINDOW_WIDTH / 2 + 100, WINDOW_HEIGHT / 2))
+        self.display_surface.blit(player_surf, player_rect)
+
+        # Opponent
+        
 
 
     def run(self):
@@ -37,6 +42,7 @@ class Game:
             self.all_sprites.update(dt)
             # draw
             self.display_surface.fill(COLORS["bg"])
+            self.display_score()
             self.all_sprites.draw(self.display_surface)
             pygame.display.update()
         pygame.quit()
