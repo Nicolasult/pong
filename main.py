@@ -1,5 +1,6 @@
 from settings import *
 from sprites import *
+import json
 
 class Game:
     def __init__(self):
@@ -13,7 +14,7 @@ class Game:
         self.all_sprites = pygame.sprite.Group()
         self.paddle_sprites = pygame.sprite.Group()
         self.player = Player((self.all_sprites, self.paddle_sprites))
-        self.ball = Ball(self.all_sprites, self.paddle_sprites)
+        self.ball = Ball(self.all_sprites, self.paddle_sprites, self.update_score)
         Opponent((self.all_sprites, self.paddle_sprites), self.ball)
 
         # Score
@@ -32,6 +33,11 @@ class Game:
         opponent_rect = opponent_surf.get_frect(center = (WINDOW_WIDTH / 2 - 100, WINDOW_HEIGHT / 2))
         self.display_surface.blit(opponent_surf, opponent_rect)
 
+        # Line separator
+        pygame.draw.line(self.display_surface, COLORS["bg detail"], (WINDOW_WIDTH / 2, 0), (WINDOW_WIDTH / 2, WINDOW_HEIGHT), 6)
+
+    def update_score(self, side):
+        self.score["player" if side == "player" else "opponent"] += 1
 
     def run(self):
         while self.running == True:
@@ -39,6 +45,7 @@ class Game:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.running = False
+                    with open(join("data", "score.txt"))
 
             # update
             self.all_sprites.update(dt)
