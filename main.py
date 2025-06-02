@@ -28,7 +28,9 @@ class Game:
         self.display_surface.blit(player_surf, player_rect)
 
         # Opponent
-        
+        opponent_surf = self.font.render(str(self.score["opponent"]), True, COLORS["bg detail"])
+        opponent_rect = opponent_surf.get_frect(center = (WINDOW_WIDTH / 2 - 100, WINDOW_HEIGHT / 2))
+        self.display_surface.blit(opponent_surf, opponent_rect)
 
 
     def run(self):
