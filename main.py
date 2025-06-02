@@ -18,9 +18,11 @@ class Game:
         Opponent((self.all_sprites, self.paddle_sprites), self.ball)
 
         # Score
-        with open(join("data", "score.txt")) as score_file:
-            self.score = json.load(score_file)
-        #self.score = {"player" : 0, "opponent" : 0}
+        try:
+            with open(join("data", "score.txt")) as score_file:
+                self.score = json.load(score_file)
+        except:
+            self.score = {"player" : 0, "opponent" : 0}
         self.font = pygame.font.Font(None, 160)
 
     def display_score(self):
